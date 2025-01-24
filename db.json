@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "username": "Jose",
+      "email": "jose@gmail.com",
+      "password": "123",
+      "id": 1
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ]
+}

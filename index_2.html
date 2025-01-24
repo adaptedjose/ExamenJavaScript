@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Sesión iniciada - Tablero Kanban </title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-green-100 bg-opacity-90">
+    <!-- Navigation bar -->
+    <nav class="w-full bg-green-400 bg-opacity-90 fixed top-0 z-50 p-4 border-b-4 border-gray-400">
+        <div class="flex justify-between items-center">
+            <!-- Titles page -->
+            <div class="flex space-x-4">
+                <h1 class="font-medium text-md text-black">MOMENTUM</h1>
+                <h2 class="font-medium text-md text-black">Tablero Kanban</h2>
+            </div>
+            <!-- Buttons -->
+            <div class="flex sm:space-x-4 space-y-2 sm:space-y-0 sm:flex-row flex-col items-center sm:items-center">
+                <a href="javascript:void(0);" onclick="logout()" class="font-medium text-md text-black bg-red-300 hover:bg-green-600 focus:ring-4 focus:ring-red-700 rounded-lg px-4 py-2 transition duration-300 shadow-md">
+                    Cerrar Sesión
+                </a>
+            </div>
+        </div>
+    </nav>
+    <!-- Board -->
+    <div class="h-screen flex items-center justify-center">
+        <div class="w-full max-w-6xl p-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <!-- Column 1 -->
+            <div class="border-2 p-4 rounded-lg border-black">
+                <h2 class="text-lg font-semibold mb-2 text-center">Pendientes</h2>
+                <div class="h-24 border border-gray-500 bg-green-200">
+                    <div id="pendientes" class="mt-4"></div>
+                </div>
+                <div class="mt-4">
+                    <button onclick="openForm('pendientes')" class="w-full py-2 bg-green-600 text-white rounded-md hover:bg-green-500 focus:ring-2 focus:ring-red-300">Agregar tarea</button>
+                </div>
+                
+            </div>
+            <!-- Column 2 -->
+            <div class="border-2 p-4 rounded-lg border-black">
+                <h2 class="text-lg font-semibold mb-2 text-center">En progreso</h2>
+                <div class="h-24 border border-gray-500 bg-green-200">
+                    <div id="enProgreso" class="mt-4"></div>
+                </div>
+                <div class="mt-4">
+                    <button onclick="openForm('enProgreso')" class="w-full py-2 bg-green-600 text-white rounded-md hover:bg-green-500 focus:ring-2 focus:ring-red-300">Agregar tarea</button>
+                </div> 
+            </div>
+            <!-- Column 3 -->
+            <div class="border-2 p-4 rounded-lg border-black">
+                <h2 class="text-lg font-semibold mb-2 text-center">Terminadas</h2>
+                <div class="h-24 border border-gray-500 bg-green-200">
+                    <div id="terminadas" class="mt-4"></div>
+                </div>
+                <div class="mt-4">
+                    <button onclick="openForm('terminadas')" class="w-full py-2 bg-green-600 text-white rounded-md hover:bg-green-500 focus:ring-2 focus:ring-red-300">Agregar tarea</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modals  -->
+    <!-- Add task modal -->
+    <div id="addTaskModal" class="fixed inset-0 bg-green-400 bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg w-96">
+            <h3 class="text-xl font-bold mb-4">Agregar Tarea</h3>
+            <form id="taskForm">
+                <!-- taskTitle input -->
+                <div class="mb-4">
+                    <label for="taskTitle" class="block text-sm font-medium">Título</label>
+                    <input type="text" id="taskTitle" class="w-full p-2 border rounded-md" required>
+                </div>
+                <!-- taskDescription input -->
+                <div class="mb-4">
+                    <label for="taskDescription" class="block text-sm font-medium">Descripción</label>
+                    <textarea id="taskDescription" class="w-full p-2 border rounded-md" rows="4" required></textarea>
+                </div>
+                <!-- taskStartDate input -->
+                <div class="mb-4">
+                    <label for="taskStartDate" class="block text-sm font-medium">Fecha de inicio</label>
+                    <input type="date" id="taskStartDate" class="w-full p-2 border rounded-md" required>
+                </div>
+                <!-- taskEndDate input -->
+                <div class="mb-4">
+                    <label for="taskEndDate" class="block text-sm font-medium">Fecha de fin</label>
+                    <input type="date" id="taskEndDate" class="w-full p-2 border rounded-md" required>
+                </div>
+                <!-- Open-close buttons -->
+                <div class="flex justify-end">
+                    <button type="button" onclick="closeForm()" class="bg-gray-300 px-4 py-2 rounded-md mr-2 focus:ring-2 focus:ring-red-300 hover:bg-gray-100">Cancelar</button>
+                    <button type="submit" class="bg-green-600 px-4 py-2 text-white rounded-md focus:ring-2 focus:ring-red-300 hover:bg-green-400">Agregar</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    <script src="./script/script.js"></script>
+</body>
+</html>
