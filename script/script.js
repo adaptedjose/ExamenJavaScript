@@ -109,5 +109,31 @@ document.getElementById('taskForm').addEventListener('submit', function(e) {
     closeForm();
 });
 
+//Upload the information to the json-server
+function uploadTask() {
+  const newTaskTitle = document.getElementById('taskTitle').value;
+  const newTaskDescription = document.getElementById('taskDescription').value;
+  const newTaskStartDate = document.getElementById('taskStartDate').value;
+  const newTaskEndDate = document.getElementById('taskEndDate').value;
 
+  const task = {title: newTaskTitle, description: newTaskDescription, startDate: newTaskStartDate, endDate: newTaskEndDate};
+
+  fetch('http://localhost:3000/tasks', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(task),
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Tarea subida:', data);
+      localStorage.setItem('task', JSON.stringify(data)); 
+      alert("Su tarea ha sido registrada en la nube"); 
+      //window.location.href = '/index_3.html'; 
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
 
